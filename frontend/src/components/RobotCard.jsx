@@ -4,7 +4,7 @@ import PeopleIcon from '@mui/icons-material/People';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutlined';
 import WifiIcon from '@mui/icons-material/Wifi';
 
 const RobotCard = ({ data }) => {
@@ -24,16 +24,22 @@ const RobotCard = ({ data }) => {
     const isHighRisk = riskLevel === "High";
 
     return (
-        <Card sx={{ 
-            height: '100%', 
-            display: 'flex', 
-            flexDirection: 'column', 
-            backgroundColor: '#1e293b', 
-            color: '#f8fafc',
-            border: isHighRisk ? '2px solid #ef4444' : '1px solid #334155',
-            boxShadow: isHighRisk ? '0 0 15px rgba(239, 68, 68, 0.4)' : 'none',
-            transition: 'all 0.3s ease'
-        }}>
+        <Card 
+            className={isHighRisk ? "glass-panel high-risk-pulse" : "glass-panel"}
+            sx={{ 
+                height: '100%', 
+                display: 'flex', 
+                flexDirection: 'column', 
+                backgroundColor: isHighRisk ? 'rgba(239, 68, 68, 0.05)' : 'rgba(30, 41, 59, 0.7)', 
+                color: '#f8fafc',
+                border: isHighRisk ? '1px solid rgba(239, 68, 68, 0.5)' : '1px solid rgba(255, 255, 255, 0.08)',
+                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                '&:hover': {
+                    transform: 'translateY(-5px)',
+                    boxShadow: isHighRisk ? '0 10px 25px rgba(239, 68, 68, 0.3)' : '0 10px 25px rgba(0, 0, 0, 0.3)'
+                }
+            }}
+        >
             <CardContent>
                 <Box display="flex" justifyContent="space-between" alignItems="center" mb={1}>
                     <Typography variant="h6" component="div" fontWeight="bold" sx={{ color: '#94a3b8' }}>
